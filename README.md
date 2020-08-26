@@ -26,7 +26,7 @@ You will need:
 
 Follow the [installation instructions for your platform](https://www.cockroachlabs.com/docs/v20.1/install-cockroachdb.html) to install Cockroach DB as a local-binary single node cluster.
 
-**Note:** This tutorial doesn't describe how to use Cockroach DB clusters being run in Kubernetes or Docker environments.
+**Note:** This tutorial doesn't describe how to use Cockroach DB clusters running in Kubernetes or Docker environments.
 
 ## Step 1. Starting your Cockroach DB cluster
 
@@ -50,13 +50,13 @@ In the SQL shell create a new database named `chores`:
 CREATE DATABASE chores;
 ```
 
-A Cockroach DB database is a collection of related tables. Each table in Cockroach DB is part of a database. When you run the application later, it will create a table named `shopping_lists` within the `chores` database.
-
 Exit the SQL shell:
 
 ```
 \q
 ```
+
+A Cockroach DB database is a collection of related tables. Each table in Cockroach DB is part of a database. When you run the application later, it will create a table named `shopping_lists` within the `chores` database.
 
 ## Step 3. Setting up your Python environment
 
@@ -96,7 +96,7 @@ from cockroachdb.sqlalchemy import run_transaction
 
 ### Step 4.2. Add the SQLAlchemy configuration settings and mapping class
 
-Now you will configure SQLAlchemy to connect to your Cockroach DB cluster and add a `ShoppingListItem` class that maps to a table in the `chores` database.
+Configure SQLAlchemy to connect to your Cockroach DB cluster and add a `ShoppingListItem` class that maps to a table in the `chores` database.
 
 Below the import statements add the following code:
 
@@ -133,11 +133,11 @@ engine = create_engine(
 Base.metadata.create_all(engine)
 ```
 
-The `ShoppingListItem` class defines how SQLAlchemy maps the data in a database table to the attributes within the class. The `__tablename__` attribute is used by SQLAlchemy to define the table name in the Cockroach DB database used by the mapping class. `ShoppingListItem` has attributes that map to table columns using the SQLAlchemy `Column` object. A SQLAlchemy `Column` defines the column name, column type, and any additional configuration for the column.
+The `ShoppingListItem` class defines how SQLAlchemy maps the data in a database table to the attributes within the class. The `__tablename__` attribute is used by SQLAlchemy to define the table name in the Cockroach DB database. `ShoppingListItem` has attributes that map to table columns using the SQLAlchemy `Column` object. A SQLAlchemy `Column` defines the column name, column type, and any additional configuration for the column.
 
-In `ShoppingListItem` the `username` and `item_id` columns make up a composite primary key. The class attributes all have different types set in the `Column` object: `String`, `UUID`, `DateTime`, `Integer`, and `Boolean`. These types are mapped by SQLAlchemy to the correct corresponding types in the Cockroach DB table. For example, a `String` class attribute maps to the Cockroach DB `VARCHAR` type in the underlying table, and `DateTime` maps to `TIMESTAMP`.
+In `ShoppingListItem` the `username` and `item_id` columns make up a composite primary key. The class attributes all have types set in the `Column` definition: `String`, `UUID`, `DateTime`, `Integer`, and `Boolean`. These types are mapped by SQLAlchemy to the correct corresponding types in the Cockroach DB table. For example, a `String` class attribute maps to the Cockroach DB `VARCHAR` type in the underlying table, and `DateTime` maps to `TIMESTAMP`.
 
-When you run the application, SQLAlchemy will automatically create the following table within the `chores` database if it doesn't already exist:
+When you run the application, SQLAlchemy reads these definitions and automatically creates the following table within the `chores` database if it doesn't already exist:
 
 ```
 CREATE TABLE shopping_lists (
