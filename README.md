@@ -30,7 +30,7 @@ Follow the [installation instructions for your platform](https://www.cockroachla
 
 ## Step 1. Starting your Cockroach DB cluster
 
-Use the following command to start your local Cockroach DB cluster:
+In a terminal use the following command to start your local Cockroach DB cluster:
 
 ```
 cockroach start-single-node --insecure --background
