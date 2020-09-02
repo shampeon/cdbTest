@@ -60,7 +60,7 @@ A Cockroach DB database is a collection of related tables. Each table in Cockroa
 
 ## Step 3. Setting up your Python environment
 
-The Python application you're create uses the [SQLAlchemy](https://www.sqlalchemy.org/) object relational mapper (ORM) to map Python objects to database table data. You need to install SQLAlchemy and the Cockroach DB libraries needed to connect to your local Cockroach DB cluster.
+The Python application you're creating uses the [SQLAlchemy](https://www.sqlalchemy.org/) object relational mapper (ORM) to map Python objects to database table data. You need to install SQLAlchemy and the Cockroach DB libraries needed to connect to your local Cockroach DB cluster.
 
 In a terminal install the dependencies using `pip`:
 
